@@ -62,7 +62,7 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
               </div>
             </div>
             <div 
-              className="ml-8"
+              className="ml-8 hidden md:block"
               style={{
                 transform: `translateY(${scrollY * 0.02}px)`,
               }}
@@ -90,8 +90,9 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
               </button>
             )}
             
+            {/* Desktop User Info */}
             <div 
-              className="flex items-center space-x-3 glass-morphism-strong rounded-xl px-4 py-3 border border-white/15 hover-lift group"
+              className="hidden md:flex items-center space-x-3 glass-morphism-strong rounded-xl px-4 py-3 border border-white/15 hover-lift group"
               style={{
                 transform: `perspective(1000px) rotateX(${(mousePosition.y - 50) * 0.005}deg) rotateY(${(mousePosition.x - 50) * 0.005}deg)`,
                 transition: 'transform 0.3s ease',
@@ -133,6 +134,15 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
                 <LogOut className="w-5 h-5" />
               </button>
             </div>
+
+            {/* Mobile Logout Button Only */}
+            <button
+              onClick={signOut}
+              className="md:hidden p-3 text-gray-400 hover:text-red-400 transition-all duration-300 rounded-xl glass-morphism hover:bg-white/10 hover:scale-110 magnetic-hover ripple-effect"
+              title="Sign Out"
+            >
+              <LogOut className="w-6 h-6" />
+            </button>
           </div>
         </div>
       </div>
