@@ -418,10 +418,29 @@ const StudentDashboard: React.FC = () => {
     <div className="min-h-screen cosmic-gradient">
       <Header
         title={activeTab === 'menu' ? 'Menu' : 'Your Orders'}
-        showCart={activeTab === 'menu'}
+        showCart={true}
         cartCount={cartCount}
         onCartClick={() => setIsCartOpen(true)}
       />
+
+      {/* Mobile Welcome Section - Only visible on mobile */}
+      <div className="block md:hidden px-4 py-4 border-b border-white/10">
+        <div className="glass-morphism rounded-xl p-4 border border-white/15">
+          <div className="text-center">
+            <h2 className="text-lg font-semibold text-white mb-1">
+              Welcome, {user?.full_name}!
+            </h2>
+            {user?.registration_number && (
+              <p className="text-sm text-blue-400 mb-2">
+                Registration: {user.registration_number}
+              </p>
+            )}
+            <p className="text-xs text-gray-400">
+              Ready to explore our cosmic menu?
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Toast Notifications */}
       {toasts.map((toast) => (
@@ -434,8 +453,8 @@ const StudentDashboard: React.FC = () => {
       ))}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Tabs */}
-        <div className="mb-8">
+        {/* Tabs - Hidden on mobile */}
+        <div className="mb-8 hidden md:block">
           <nav className="flex space-x-8">
             <button
               onClick={() => setActiveTab('menu')}
@@ -458,6 +477,32 @@ const StudentDashboard: React.FC = () => {
               Your Orders
             </button>
           </nav>
+        </div>
+
+        {/* Mobile Tab Buttons - Only visible on mobile */}
+        <div className="mb-6 block md:hidden">
+          <div className="flex space-x-2">
+            <button
+              onClick={() => setActiveTab('menu')}
+              className={`flex-1 py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 ${
+                activeTab === 'menu'
+                  ? 'ios-button text-white cosmic-glow'
+                  : 'glass-morphism text-gray-400 hover:text-white border border-white/20'
+              }`}
+            >
+              Menu
+            </button>
+            <button
+              onClick={() => setActiveTab('orders')}
+              className={`flex-1 py-3 px-4 rounded-lg font-medium text-sm transition-all duration-200 ${
+                activeTab === 'orders'
+                  ? 'ios-button text-white cosmic-glow'
+                  : 'glass-morphism text-gray-400 hover:text-white border border-white/20'
+              }`}
+            >
+              Your Orders
+            </button>
+          </div>
         </div>
 
         {/* Menu Tab */}
