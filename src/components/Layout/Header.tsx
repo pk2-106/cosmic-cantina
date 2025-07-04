@@ -134,15 +134,6 @@ const Header: React.FC<HeaderProps> = ({ title, showCart = false, cartCount = 0,
                 <LogOut className="w-5 h-5" />
               </button>
             </div>
-
-            {/* Mobile Logout Button Only */}
-            <button
-              onClick={signOut}
-              className="md:hidden p-3 text-gray-400 hover:text-red-400 transition-all duration-300 rounded-xl glass-morphism hover:bg-white/10 hover:scale-110 magnetic-hover ripple-effect"
-              title="Sign Out"
-            >
-              <LogOut className="w-6 h-6" />
-            </button>
           </div>
         </div>
       </div>

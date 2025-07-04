@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Clock, Search, Filter, Plus, Minus, Star, ShoppingCart, X, Package, CheckCircle, AlertCircle, Zap, Shield } from 'lucide-react';
+import { Clock, Search, Filter, Plus, Minus, Star, ShoppingCart, X, Package, CheckCircle, AlertCircle, Zap, Shield, LogOut } from 'lucide-react';
 import Header from '../../components/Layout/Header';
 import Toast from '../../components/Common/Toast';
 import { MenuItem, CartItem, Order } from '../../types';
@@ -13,7 +13,7 @@ interface ToastMessage {
 }
 
 const StudentDashboard: React.FC = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [activeTab, setActiveTab] = useState<'menu' | 'orders'>('menu');
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -426,18 +426,27 @@ const StudentDashboard: React.FC = () => {
       {/* Mobile Welcome Section - Only visible on mobile */}
       <div className="block md:hidden px-4 py-4 border-b border-white/10">
         <div className="glass-morphism rounded-xl p-4 border border-white/15">
-          <div className="text-center">
-            <h2 className="text-lg font-semibold text-white mb-1">
-              Welcome, {user?.full_name}!
-            </h2>
-            {user?.registration_number && (
-              <p className="text-sm text-blue-400 mb-2">
-                Registration: {user.registration_number}
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <h2 className="text-lg font-semibold text-white mb-1">
+                Welcome, {user?.full_name}!
+              </h2>
+              {user?.registration_number && (
+                <p className="text-sm text-blue-400 mb-2">
+                  Registration: {user.registration_number}
+                </p>
+              )}
+              <p className="text-xs text-gray-400">
+                Ready to explore our cosmic menu?
               </p>
-            )}
-            <p className="text-xs text-gray-400">
-              Ready to explore our cosmic menu?
-            </p>
+            </div>
+            <button
+              onClick={signOut}
+              className="p-2 text-gray-400 hover:text-red-400 transition-all duration-300 rounded-lg hover:bg-white/10 hover:scale-110 magnetic-hover ripple-effect ml-4"
+              title="Sign Out"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>
@@ -658,7 +667,7 @@ const StudentDashboard: React.FC = () => {
                           {new Date(order.created_at).toLocaleTimeString()}
                         </p>
                       </div>
-                      <div className="text-right">
+                      <div className="text-left sm:text-right">
                         <p className="text-2xl font-bold cosmic-text">₹{order.total_amount}</p>
                         <div className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(order.status)}`}>
                           {getStatusIcon(order.status)}
@@ -681,7 +690,7 @@ const StudentDashboard: React.FC = () => {
                               <h5 className="font-medium text-white">{item.menu_item.name}</h5>
                               <p className="text-sm text-cosmic-400">{item.menu_item.canteen_name}</p>
                             </div>
-                            <div className="text-right">
+                            <div className="text-left">
                               <p className="font-medium text-white">x{item.quantity}</p>
                               <p className="text-sm text-gray-400">₹{item.price * item.quantity}</p>
                             </div>
