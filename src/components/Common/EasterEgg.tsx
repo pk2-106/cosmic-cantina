@@ -68,9 +68,9 @@ const EasterEgg: React.FC<EasterEggProps> = ({ isOpen, onClose }) => {
       </div>
 
       {/* Modal Content */}
-      <div className="relative z-10 max-w-2xl mx-auto p-8">
+      <div className="relative z-10 max-w-lg mx-auto p-6">
         <div 
-          className="glass-morphism-strong rounded-2xl p-8 border-2 border-white/20 hover-lift"
+          className="glass-morphism-strong rounded-2xl p-6 border-2 border-white/20 hover-lift"
           style={{
             transform: `perspective(1000px) rotateX(${(mousePosition.y - 50) * 0.05}deg) rotateY(${(mousePosition.x - 50) * 0.05}deg)`,
             transition: 'transform 0.3s ease',
@@ -80,47 +80,46 @@ const EasterEgg: React.FC<EasterEggProps> = ({ isOpen, onClose }) => {
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-lg transition-all duration-300 hover:scale-110 group"
+            className="absolute top-3 right-3 p-2 hover:bg-white/10 rounded-lg transition-all duration-300 hover:scale-110 group"
           >
-            <X className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors" />
+            <X className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
           </button>
 
           {/* Content */}
           <div className="text-center">
             {/* Animated Icon */}
-            <div className="w-20 h-20 mx-auto mb-6 relative">
+            <div className="w-16 h-16 mx-auto mb-4 relative">
               <div className="w-full h-full glass-morphism rounded-full flex items-center justify-center cosmic-glow-strong animate-pulse">
-                <Sparkles className="w-10 h-10 text-purple-400" />
+                <Sparkles className="w-8 h-8 text-purple-400" />
               </div>
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 animate-spin" style={{ animationDuration: '3s' }}></div>
             </div>
 
             {/* Title */}
-            <h2 className="text-3xl font-bold text-white mb-4 cosmic-text">
+            <h2 className="text-2xl font-bold text-white mb-3 cosmic-text">
               Easter Egg Discovered!
             </h2>
 
             {/* Quote */}
-            <div className="glass-morphism rounded-xl p-6 mb-6 border border-purple-500/30">
-              <blockquote className="text-lg text-gray-200 italic leading-relaxed mb-4">
+            <div className="glass-morphism rounded-xl p-4 mb-4 border border-purple-500/30">
+              <blockquote className="text-base text-gray-200 italic leading-relaxed mb-2">
                 "You are on this council, but we do not grant you the rank of Master."
               </blockquote>
-              <cite className="text-purple-400 font-semibold">– Mace Windu</cite>
+              <cite className="text-purple-400 font-semibold text-sm">– Mace Windu</cite>
             </div>
 
             {/* Description */}
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              Congratulations, young Padawan! You've discovered a hidden secret in the cosmic cantina. 
-              Your curiosity has been rewarded with this legendary quote from the Jedi Council.
+            <p className="text-gray-300 mb-5 leading-relaxed text-sm">
+              Congratulations, young Padawan! You've discovered a hidden secret in the cosmic cantina.
             </p>
 
             {/* Action Button */}
             <button
               onClick={onClose}
-              className="ios-button text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 mx-auto"
+              className="ios-button text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 mx-auto"
               style={{ boxShadow: '0 0 25px rgba(88, 86, 214, 0.5)' }}
             >
-              <Sparkles className="w-5 h-5" />
+              <Sparkles className="w-4 h-4" />
               <span>Continue Your Journey</span>
             </button>
           </div>
